@@ -64,7 +64,7 @@ const UserManagement = () => {
 
   const handleShowEmail = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/read/username/${searchUsername}`)
+      const response = await axios.get(`http://localhost:8000/read/usernames/${searchUsername}`) // Use the correct endpoint
       const data = response.data;
       if(data.error) {
         setSearchEmail([{id: 404, email: 'Not Found'}]);
@@ -79,9 +79,9 @@ const UserManagement = () => {
     }
     catch (error) {
       console.error('Error fetching email of username', error);
-    }
-    
+    }  
   }
+  
 
   const addUser = async () => {
     try {

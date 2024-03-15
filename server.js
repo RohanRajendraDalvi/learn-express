@@ -37,6 +37,19 @@ app.get('/read/usernames', (req, res) => {
   res.send(usernames);
 });
 
+app.get('/read/usernames/:name', (req, res) => {
+  let name = req.params.name; // Get the username from the URL parameter
+  let users_with_name = users.filter(function(user){
+    return user.username === name; // Filter users to find matches
+  });
+  if(users_with_name.length === 0) {
+    res.status(404).send({error: "User not found"}); // Send 404 if no users found
+  } else {
+    res.send(users_with_name); // Send the filtered list of users
+  }
+});
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/write/adduser', addMsgToRequest);
